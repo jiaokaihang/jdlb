@@ -54,4 +54,29 @@
         </div>
     </div>
 </body>
+<script>
+    var imgs=document.getElementById('imgs');
+    var focus=document.getElementById("focus");
+    var spans = document.getElementsByTagName('span');
+
+    var cuerr;
+
+    for(var i=0;i<spans.length;i++){
+        spans[i].index=i;
+        spans[i].onclick=function(){
+            for(var j=0;j<spans.length;j++){
+                spans[j].style.background="url(images/dot.png)"
+            }
+            this.style.background="url(images/dotActive.png)";
+
+            cuerr=this.index;
+
+            if(window.addEventListener){
+                imgs.firstElementChild.firstElementChild.src="images/"+(this.index+1)+".jpg";
+                imgs.firstElementChild.href=this.index+1+".html"
+            }
+        }
+        
+    }
+</script>
 </html>
