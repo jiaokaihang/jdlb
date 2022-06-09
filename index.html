@@ -32,7 +32,7 @@
             _float:left;
             width: 16px;
             height: 16px;
-            background:url(images/dotActive.png);
+            background:url(images/dot.png);
             margin-right: 10px;
             cursor: pointer;
         }
@@ -46,7 +46,7 @@
             </a>
         </div>
         <div id="focus">
-            <span style="background:url(images/dot.png) ;"></span>
+            <span style="background:url(images/dotActive.png) ;"></span>
             <span></span>
             <span></span>
             <span></span>
@@ -65,18 +65,49 @@
         spans[i].index=i;
         spans[i].onclick=function(){
             for(var j=0;j<spans.length;j++){
-                spans[j].style.background="url(images/dot.png)"
+                spans[j].style.background="url(images/dotActive.png)"
             }
-            this.style.background="url(images/dotActive.png)";
+            this.style.background="url(images/dot.png)";
 
             cuerr=this.index;
 
             if(window.addEventListener){
                 imgs.firstElementChild.firstElementChild.src="images/"+(this.index+1)+".jpg";
                 imgs.firstElementChild.href=this.index+1+".html"
+            }else{
+                imgs.firstChild.firstChild.src="images/"+(this.index+1)+".jpg";
+                imgs.firstChild.href=this.index+1+".html"
             }
         }
-        
     }
+        //设置变量k
+        var k=1;
+        var sid=setInterval(function(){
+            for(var j=0;j<spans.length;j++){
+                spans[j].style.background="url(images/dot.png)";
+            }
+
+            // 判断用户是否点击?
+            if(cuerr!=undefined){
+                k=cuerr;
+                cuerr=undefined;
+            }
+            spans[k].style.background="url(images/dotActive.png)";
+
+            if(window.addEventListener){
+                imgs.firstElementChild.firstElementChild.src="images/"+(k+1)+".jpg";
+                imgs.firstElementChild.href=k+1+".html"
+            }else{
+                imgs.firstChild.firstChild.src="images/"+(k+1)+".jpg";
+                imgs.firstChild.href=k+1+".html"
+            }
+           
+            if(k>=4){
+                k=-1;
+            }
+            k++
+        },2000)
+        
+    
 </script>
 </html>
